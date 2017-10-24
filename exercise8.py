@@ -3,10 +3,20 @@
 
 #####Question 1
 
-import pandas as pd
+import re
+vcf = open("Cflorida.vcf","r")
 
-vcffile = open("Cflorida.vcf","r")
+SearchStr =r'>[cf]'
+ReplaceStr =r'fuuuck'
 
+for line in vcf:
+    line = line.strip()
+    if "#" in line:
+        newLine = re.sub(SearchStr, ReplaceStr, line)
+        print newLine
+    else: print line
+
+vcf.close()
 
 
 
