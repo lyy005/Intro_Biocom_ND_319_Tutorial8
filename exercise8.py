@@ -25,7 +25,7 @@ for line in vcf:
             match = re.search(([0-1]/[0-1]:)(\d{1},\d{1}))
             m.group(2)
         else:
-            match = re.search(([0-1]/[0-1]:)(.,{1}))
+            match = re.search(([0-1]/[0-1]:)(\.,{1}))
             m.group(2)
             #replace with NA
         outfile.append(line + "\n")
