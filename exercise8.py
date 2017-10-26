@@ -15,8 +15,8 @@ search_allel = r'[0-1]/[0-1]:(\d{1},\d{1})'
 replace_allel = r'\2'
 
 
-match = r'.\'
-fix = r'NA'
+search_match = r'\.'
+replace_match = r'NA'
 
 
 
@@ -29,7 +29,8 @@ for line in vcf:
         line = re.sub(search_fl, replace_fl, line)
         outfile.write(line + "\n")
     else:
-        line = re.sub(search_allel, replace_allel)
+        line = re.sub(search_allel, replace_allel, line)
+        line = re.sub(search_match, replace_match, line)
         outfile.write(line + "\n")
 
 outfile.close()
