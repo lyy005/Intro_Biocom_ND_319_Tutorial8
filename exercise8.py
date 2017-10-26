@@ -19,8 +19,15 @@ for line in vcf:
         texas = re.sub(search_tex, replace_tex, line)
         florida= re.sub(search_fl, replace_fl, line)
         outfile.append(line + "\n")
-	else:
+    else:
         #select lines with "Contig", find 0/0:, keep 1 digit after that, get rid of everything else
+        if:
+            match = re.search(([0-1]/[0-1]:)(\d{1},\d{1}))
+            m.group(2)
+        else:
+            match = re.search(([0-1]/[0-1]:)(.,{1}))
+            m.group(2)
+            #replace with NA
         outfile.append(line + "\n")
 vcf.close()
 
