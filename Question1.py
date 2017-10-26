@@ -5,8 +5,8 @@ vcffile=open("Cflorida.vcf","r")
 outfile=open("CfloridaCounts.txt","w")
 
 import re
-texasfind=re.escape("[cC][fF](0-9){0:2}.[Aa](0-9){0:1}.")
-floridafind=re.escape("[cC][fF].[gG](0-9){0:1}[aA]{0:1}[iI]{0:1}.")
+texasfind="[cC][fF](0-9){,2}\.[Aa](0-9){,1}\."
+floridafind="[cC][fF]\.[gG](0-9){,1}[aA]{,1}[iI]{,1}\."
 
 #Loop through open file
 for line in vcffile:
@@ -15,9 +15,13 @@ for line in vcffile:
     if "##" in line:
         outfile.write(line + "\n")
     elif "#CHROM" in line: #how can you tell if this is the line with the column headings?
-        re.subn(texasfind,"Cf.Sfa.",line)
-        re.subn(floridafind,"Cf.Gai.",line) #standardize (replace) sample names with TX and FL regexes
+        line=re.sub(texasfind,r"Cf.Sfa.",line)
+        line=re.sub(floridafind,r"Cf.Gai.",line) #standardize (replace) sample names with TX and FL regexes
         outfile.write(line + "\n")#write new version of line to file
+    else: #now you're in the data
+        #replace full SNP info with allele counts only
+        #replace missing data with NA
+        #write new version of line to new file
         
 vcffile.close()
 outfile.close()
