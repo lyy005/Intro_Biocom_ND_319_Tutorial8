@@ -8,7 +8,7 @@ outfile = open("CfloridaCounts.txt","w")
 TX_reg=re.compile(input regex) #tx and fl should be the same (format re.compile(r''))
 FL_reg=re.compile(input regex)
 SNP_reg=re.compile(r'^.+?/.+?:(.+?,.+?):.+?,.+?,.+?$') #not 100% sure it's correct
-
+#re.sub(r"[Cc][Ff][0-9]+\.[Aa][0-9]{1}\.[0-9]{3}","Cf.Sfa.[0-9]{3}",test)>test1 #in case this is helpful for searches
 #loop(following similar format to pseudo code)
 for line in vcf:
   line=line.strip()
