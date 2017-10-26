@@ -1,7 +1,7 @@
 import re
 
 #Open files for input and output
-vcf = open("Cflorida.vcf","r")
+vcffile = open("Cflorida.vcf","r")
 outfile = open("CfloridaCounts.txt","w")
 
 #assign regex to variable(might need 3: one for texas, one for florida and one for SNPs)
@@ -9,10 +9,6 @@ TX_reg=r"[Cc].{1,3}\.[a|A][0-9]?\.([0-9]{3})"
 FL_reg=r"[Cc].{1,3}\.[g|G].{1,2}\.([0-9]{3})"
 SNP_reg=r"[0|1]\/[0|1]\:([0-9]{1,3}\,[0-9]{1,3})\:[0-9]{1,3}\:[0-9]{1,3}\:[0-9]{1,3}\,[0-9]{1,3}\,[0-9]{1,3}"
 Fin_reg=r"\.\/\.\:\.\:\.\:\.\:\."
-#I think these should work... not 100%
-
-#re.sub(r"[Cc][Ff][0-9]+\.[Aa][0-9]{1}\.[0-9]{3}","Cf.Sfa.[0-9]{3}",test)>test1 
-#original regex idea to do it all at once....
 
 #loop(following similar format to pseudo code)
 for Line in vcffile:
