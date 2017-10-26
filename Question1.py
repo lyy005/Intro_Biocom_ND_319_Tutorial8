@@ -1,37 +1,42 @@
-#Question 1 for tutorial exercise 08
+#Ex 8
 
 #Open files to read and write
-vcffile=open("Cflorida.vcf","r")
-outfile=open("CfloridaCounts.txt","w")
 
 import re
-texasfind=re.search("[cC][fF](0-7)?\.[Aa](2)?\.d{3}",vcffile)
+vcffile = open("Cflorida.vcf","r")
+outfile = open("CfloridaCounts.txt","w")
 
-#Loop through open file
+#assign regex to variable names
+
+TXnames=r"[Cc][Ff](07)?\.[Aa](2)?"
+FLnames=r"[Cc][Ff]\.[Gg][Aa2](Ii)?"
+ACR=r"[01.]/[01.]:([0-9,.]+):[0-9.]+:[0-9.]+:[0-9,.]+"
+
+#loop over file
 for Line in vcffile:
-    #Remove end of line character
+    #strip end of line
     Line = Line.strip()
-    #Operate only on lines that do not include >, skips header lines
-    if ">" not in Line:
-        #Find the ORF in each sequence line
-        texasfind=re.search(r"[cC][fF](0-7)?\.[Aa](2)?\.d{3}",Line)
-        #Print the ORF to standard out, note that group(0) is the full match
-        print(texasfind.group(0))
-    elif : #how can you tell if this is the line with the column headings?
-        #standardize (replace) sample names with TX and FL regexes
-        re.sub()
+    
+    #ID header line
+    if "##" in Line: 
+    #write unchanged header line to file
+        outfile.write(Line + "\n")
+    #ID second line
+    elif "#" in Line:
+        #sub sample names with TX and FL regexes
+        newnamesTX = re.sub(TXnames,"Cf.Sfa",Line)
+        newnamesALL = re.sub(FLnames,"Cf.Gai",newnamesTX)
         #write new version of line to file
-        outfile.write(string + "\n")
-    else: #now you're in the data
+        outfile.write(newnamesALL + "\n")
+    
+    else:
         #replace full SNP info with allele counts only
+        AC=re.sub(ACR,r"\1",Line)
         #replace missing data with NA
+        ACNA=re.sub(r"\.","NA",AC)
         #write new version of line to new file
+        outfile.write(ACNA + "\n")
 
+#Close files
 vcffile.close()
-
-# need to add the loop after checking that the regex code above works for the file
-#other possible REGEX pattern 
-import re
-texas=re.search(r"[cC][fF]([0-9]{2})?\.[Aa]([0-9])?\.[X]{3}",vcffile)
-
-
+outfile.close()
