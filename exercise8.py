@@ -11,8 +11,8 @@ replace_tex = r'Cf.Sfa.\2'
 search_fl = r'(CF.G2.|CF.GAI.|cf.gai.)([0-9]{3})'
 replace_fl = r'Cf.Gai.\2'
 
-search_allel = r'[0-1]/[0-1]:(\d{1},\d{1})'
-replace_allel = r'\2'
+search_allel = r'[01.]/[01.]:([0-9.]+,?[0-9.]*):[0-9:.,]*'
+replace_allel = r'\1'
 
 
 search_match = r'\.'
