@@ -40,3 +40,4 @@ for Line in vcffile:
 #Close files
 vcffile.close()
 outfile.close()
+
