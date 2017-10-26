@@ -5,7 +5,8 @@ vcffile=open("Cflorida.vcf","r")
 outfile=open("CfloridaCounts.txt","w")
 
 import re
-texasfind=re.compile("[cC][fF](0-9)?\.[Aa](0-9)?\.(0-9){3}")
+texasfind=re.escape("[cC][fF](0-9){0:2}.[Aa](0-9){0:1}.")
+floridafind=re.escape("[cC][fF].[gG](0-9){0:1}[aA]{0:1}[iI]{0:1}.")
 
 #Loop through open file
 for line in vcffile:
@@ -13,9 +14,11 @@ for line in vcffile:
     line = line.strip()
     if "##" in line:
         outfile.write(line + "\n")
-    elif "#" in line: #how can you tell if this is the line with the column headings?
-        #standardize (replace) sample names with TX and FL regexes
-        #write new version of line to file
+    elif "#CHROM" in line: #how can you tell if this is the line with the column headings?
+        re.subn(texasfind,"Cf.Sfa.",line)
+        re.subn(floridafind,"Cf.Gai.",line) #standardize (replace) sample names with TX and FL regexes
+        outfile.write(line + "\n")#write new version of line to file
+        
 vcffile.close()
 outfile.close()
 
