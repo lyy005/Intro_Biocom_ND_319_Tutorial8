@@ -1,5 +1,8 @@
 #########exercise 8#############################
 
+#Mati Nemera
+#Katherine Inskeep
+#Dan Bruzzese
 
 #####Question 1
 import sys
@@ -17,7 +20,6 @@ replace_allel = r'\1'
 
 search_match = r'\.'
 replace_match = r'NA'
-
 
 
 for line in vcf:
