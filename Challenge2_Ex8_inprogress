@@ -1,0 +1,66 @@
+# Import packages:
+
+import numpy
+import os
+import pandas
+import re
+from plotnine import *
+
+# Navigation to directory:
+
+os.listdir('.')
+os.chdir('/Users/winghomitchell/Intro_Biocom_ND_319_Tutorial8')
+
+# Open files to read and write:
+
+IDtxt = open("indivIDs.txt","r")
+seqFastq = open("seqFastq.fq","r")
+
+IDseqFasta = open("seqFastq.fq","w")
+
+# Initialize empty dictionary and lists:
+
+dictionary = {}
+
+for line in seqFastq:
+    line = line.strip()
+    cols = line.split()
+    
+    if cols[0] in dictionary:
+        print("Duplicate: " + cols[1])
+        break
+    else:
+        dictionary[cols[0]] = cols[1]
+        
+# Make dictionary of IDs:
+
+# Close ID file:
+IDtxt.close()
+
+# Assign RegEx to variable name, or compile to variable name:
+
+# RegEx = (AATTC)
+
+# While loop to process fastq lines:
+
+while line != "":    
+    if: line = 
+        if:
+            if:
+            
+            else:
+    else:
+        print("Error")
+        break
+
+# Graph histograms of good and bad start positions:
+
+
+# Close other file: 
+seqFastq.close()
+
+
+
+
+
+
