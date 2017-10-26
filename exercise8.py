@@ -14,12 +14,11 @@ replace_fl = r'Cf.Gai.\4'
 for line in vcf:
     line = line.strip()
     if "##" in line:
-		outfile.write(line + "\n")	
-	elif "#" in line:
+        outfile.write(line + "\n")
+    elif "#" in line:
         texas = re.sub(search_tex, replace_tex, line)
+        florida= re.sub(search_fl, replace_fl, line)
         outfile.append(line + "\n")
-        florida= re.sub(search_tex, replace_tex, line)
-        print texas
 	else:
         #select lines with "Contig", find 0/0:, keep 1 digit after that, get rid of everything else
         outfile.append(line + "\n")
