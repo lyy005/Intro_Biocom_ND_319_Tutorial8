@@ -22,7 +22,7 @@ for Line in vcffile:
         Line_3=re.sub(FL_reg, "Cf.Gai.\g<1>", Line_2)
         #write new line version to file
         outfile.write(Line_3 + "\n") 
-    else: #now you're in the data
+    else:
         Line_2=re.sub(SNP_reg, "\g<1>", Line)
         #replaces full SNP info with allele counts
         #replace missing data with NA
