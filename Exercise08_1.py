@@ -18,8 +18,8 @@ for line in vcffile:#look at old code to see how you looped over a file
         #write unchanged header line to file
     elif lineNumber==1: #how can you tell if this is the line with the column headings?
         #standardize (replace) sample names with TX and FL regexes
-        re.sub(([CF|cf]{1}.*\.[Aa]{1}.*\.),(Cf.Sfa.),line)
-        re.sub(([CF|cf]{1}.*\.[Gg]{1}.*\.),(Cf.Gai.),line)
+        re.sub(((CF|cf){1}.?{4}\.,(Cf.Sfa.),line) ###Having trouble gettig re.sub to work, syntax not working. Trying to replace CF and then any 4 characters leading to a period
+        re.sub(((CF|cf){1}.?{4}\.,(Cf.Gai.),line)
         #write new version of line to file
         outfile.write(line+"\n")
     else: #now you're in the data
