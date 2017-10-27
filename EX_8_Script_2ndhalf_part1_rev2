@@ -1,0 +1,36 @@
+import numpy
+import os
+import re
+from plotnine import *
+os.listdir('.')
+os.chdir('/Users/sampathkumarbalaji/EX_8/Intro_Biocom_ND_319_Tutorial8')
+import pandas
+
+pattern = '[0-9],[0-9]'
+# setting up the regex format and compiling it
+regex = re.compile(pattern)
+# parsing input file Cflorida.vcf and writing onto the outfile CfloridaCounts_2ndhalf using for loop
+with open("Cflorida.vcf", "r") as infile, open("CfloridaCounts_2ndhalf.txt", "w") as outfile:
+    for line in infile:
+# splitting up lines and columns to process further
+        line = line.strip()
+        cols = line.split()
+        for index in range(4,len(cols)):
+# find all the matching pattern based off pattern str variable
+            match = re.findall(pattern, cols[index])
+# if match is found then replace with the 1st match      
+            if (match):
+                 cols[index] = match[0]
+# else '.' gets replaced with NA                 
+            else:
+                 cols[index] = 'NA'
+        line_new = '\t'.join(cols) 
+# new lines are written onto the output file
+        outfile.write(line_new + '\n')
+outfile.close()
+infile.close()
+
+
+  
+
+    
